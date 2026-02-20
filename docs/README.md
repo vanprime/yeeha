@@ -8,7 +8,7 @@ A browser extension that enhances Jira without paid plugins or external services
 
 1. Download the latest [release](https://github.com/vanprime/yeeha/releases)
 
-2. Access the Extension Management Page: [chrome://extensions/](chrome://extensions/).<br>
+2. Access the Extension Management Page: Type `chrome://extensions/` into your browser's address bar.
    <img src="./docs/images/chrome-extension-manager.png" width="300">
 
 3. Enable Developer Mode: In the top right corner of the Extensions page, you'll see a toggle for `Developer mode`. Turn it on. This allows you to _load unpacked extensions_.<br>
@@ -129,16 +129,18 @@ Configure scope and source issue selection in one place.
 | Setting | What it does |
 |---------|-------------|
 | **Include all subtasks** | Fetches sub-tasks for matched parent issues, preserving hierarchy |
-| **Include all Epic children** | Fetches child issues for matched Epics |
+| **Include all Epic children** | Fetches child issues for matched Epics (**enabled by default**) |
 | **Mentioned links as remote links** | Converts Jira/Confluence/Figma URLs in descriptions and comments to remote links |
 | **Source comments in summary** | Includes up to 50 comments in the migration summary |
 | **Migrate attachments** | Uploads attachments to target; falls back to remote links if upload fails |
 | **SCM branches and pull requests** | Adds branch/PR data to the summary comment (GitHub or GitLab, **Server/DC only**) |
 
-1. Open the source Jira in a tab → click **Set as Source**
-2. Enter JQL manually or click **Refresh from tab** to capture the active search query
-3. Click **Fetch Issues** — results are cached locally with a preview table
-4. The extension auto-detects estimation fields (e.g., Story Points) and epic link configuration
+1. Choose one scope method:
+   - **Drop Issues** (default): drag Jira issue links into the drop zone. Source instance is inferred from links, scope is generated as `key in (...)`, and each new drop appends to the existing dropped scope.
+   - **Use JQL**: enter JQL manually or click **Refresh from tab** to capture JQL and infer source instance from the active Jira tab.
+2. Fetch issues (drop mode auto-fetches; JQL mode uses **Fetch Issues**).
+3. Validate the cached issue summary table before moving on.
+4. The extension auto-detects estimation fields (e.g., Story Points) and epic link configuration.
 
 ### Step 2 — Target
 
@@ -171,7 +173,7 @@ Progress is shown in real time. You can **Stop Migration** at any time; already-
 
 ### First migration checklist
 
-1. Setup: source instance captured, JQL set, issues fetched
+1. Setup: source scope defined (drop links or JQL), source context inferred, issues fetched
 2. Target: target instance captured, project selected, configuration loaded
 3. Review: issue types + required fields mapped, at least one issue ready
 4. Migrate: target tab active before clicking **Start Migration**
