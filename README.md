@@ -35,7 +35,8 @@ The extension communicates with:
 
 | Mechanism | What it stores |
 | --- | --- |
-| IndexedDB `yeeha-migrate-issues` | Migration history, checkpoints, lineage, and sync results |
-| IndexedDB `yeeha-data-analysis` | Legacy analysis datasets |
-| `chrome.storage.local` | Extension state, project metadata, and wizard state |
+| IndexedDB `yeeha-v4-osa` | OSA audit runs, issue snapshots, workflow profiles, adjustments, and latest workitem cache |
+| IndexedDB `yeeha-v4-jira-issue-storage` | Jira source-domain records and source-target mapping ledger entries |
+| Legacy IndexedDB databases | Removable data from retired or archived features, including old migration and analysis databases |
+| `chrome.storage.local` | Extension state, project metadata, content-script settings, OSA settings, and SCM connections |
 | `localStorage` | UI preferences only |
